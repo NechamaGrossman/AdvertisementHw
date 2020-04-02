@@ -1,0 +1,40 @@
+﻿@model ListItemAndString
+
+<html>
+<body>
+    <br />
+    <br />
+    <a href="/Home/AddItem" class="btn btn-info">Add a listing </a>
+    <br />
+    <br />
+    <br />
+    @foreach (Item i in Model.items)
+    {
+        <div class="card text-white bg-secondary mb-3" tyle="max-width: 18rem;">
+            <h5 class="card-Title">
+                @i.Name
+            </h5>
+            <div class="card-body">
+                <p class="card-text"> @i.Text</p>
+                <div class="card-footer text-muted">@i.PhoneNumber</div>
+                <div class="card-footer text-muted">
+                    @i.Date
+                </div>
+                @{ if (@Model.Session != null)
+                    {
+                        foreach(string c in @Model.Session)
+                        {
+                            if(int.Parse(c)==i.Id)
+                            {
+                                <a class="btn btn-danger">Delete</a>
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <br />
+        <br />
+    }
+</body>
+</html>
